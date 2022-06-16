@@ -1,4 +1,4 @@
-package com.example.restwithspringbootawsdocker;
+package com.restwithspringbootawsdocker;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,13 +1,13 @@
-package com.example.restwithspringbootawsdocker;
+package com.restwithspringbootawsdocker;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class RestWithSpringbootAwsDockerApplication {
+public class RestWithSpringbootAwsDockerApp {
 
     public static void main(String[] args) {
-        SpringApplication.run(RestWithSpringbootAwsDockerApplication.class, args);
+        SpringApplication.run(RestWithSpringbootAwsDockerApp.class, args);
     }
 
 }
