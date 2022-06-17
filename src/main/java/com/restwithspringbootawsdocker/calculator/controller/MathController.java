@@ -1,6 +1,7 @@
 package com.restwithspringbootawsdocker.calculator.controller;
 
-import com.restwithspringbootawsdocker.calculator.exception.UnsupportedMathOperationException;
+import com.restwithspringbootawsdocker.calculator.service.CalcService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -8,26 +9,27 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class MathController {
+    @Autowired
+    private CalcService calculator;
 
-    @RequestMapping(value = "/sum/{numbOne}/{numbTwo}", method = RequestMethod.GET)
-    public Double sum(@PathVariable("numbOne")String numbOne, @PathVariable("numbTwo") String numbTwo)throws Exception{
-
-        if(!isNumeric(numbOne)||!isNumeric(numbTwo)){
-            throw new UnsupportedMathOperationException("Please set a numeric value");
+    @RequestMapping(value = "/calc/{numbOne}/{numbTwo}", method = RequestMethod.GET)
+    public String calc(@PathVariable("numbOne")String numbOne, @PathVariable("numbTwo") String numbTwo)throws Exception{
+        if(calculator.isNumeric(numbOne,numbTwo)) {
+            if (numbOne.contains(",")) numbOne = numbOne.replaceAll(",", ".");
+            if (numbTwo.contains(",")) numbTwo = numbTwo.replaceAll(",", ".");
         }
-        return convertDouble(numbOne) + convertDouble(numbTwo);
-    }
+        return "Soma: " + calculator.sum(numbOne, numbTwo) +
+                "\nSubtração: " + calculator.sub(numbOne, numbTwo) +
+                "\nMultiplicação: " + calculator.mult(numbOne, numbTwo) +
+                "\nDivisão: " + calculator.div(numbOne, numbTwo) +
+                "\nMédia: " + calculator.media(numbOne, numbTwo);
 
-    private Double convertDouble(String strNumber) {
-       if(strNumber == null) return 0D;
-       String number = strNumber.replaceAll(",",".");
-       if(isNumeric(number)) return Double.parseDouble(number);
-       return 0D;
     }
-
-    private boolean isNumeric(String strNumber) {
-        if(strNumber == null) return false;
-        String number = strNumber.replaceAll(",",".");
-        return number.matches("[-+]?[0-9]*\\.?[0-9]+");
+    @RequestMapping(value = "/raiz/{numbOne}", method = RequestMethod.GET)
+    public String calc(@PathVariable("numbOne")String numbOne)throws Exception{
+        if(calculator.isNumeric(numbOne)) {
+            if (numbOne.contains(",")) numbOne = numbOne.replaceAll(",", ".");
+        }
+        return "\nRaizQuadrada: " + calculator.raizq(numbOne);
     }
 }
