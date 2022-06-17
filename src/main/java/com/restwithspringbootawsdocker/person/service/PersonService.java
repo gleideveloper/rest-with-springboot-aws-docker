@@ -1,6 +1,6 @@
 package com.restwithspringbootawsdocker.person.service;
 
-import com.restwithspringbootawsdocker.person.Person;
+import com.restwithspringbootawsdocker.person.entity.Person;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -10,6 +10,25 @@ import java.util.concurrent.atomic.AtomicLong;
 @Service
 public class PersonService {
     private final AtomicLong counter = new AtomicLong();
+
+    public Person create(Person person){
+        return person;
+    }
+    public Person update(Person person){
+        return person;
+    }
+
+    public void delete(Long id){
+
+    }
+
+    public List<Person> findByAll(){
+        List<Person> persons = new ArrayList<>();
+        for (int i = 0; i < 8; i++) {
+            persons.add(mockPerson(i));
+        }
+        return persons;
+    }
     public Person findById(Long id){
         Person person = new Person();
         person.setId(counter.incrementAndGet());
@@ -18,13 +37,6 @@ public class PersonService {
         person.setAddress("Manaus/Am - Brazil");
         person.setGender("Male");
         return person;
-    }
-    public List<Person> findByAll(){
-        List<Person> persons = new ArrayList<>();
-        for (int i = 0; i < 8; i++) {
-            persons.add(mockPerson(i));
-        }
-        return persons;
     }
 
     private Person mockPerson(long id) {

@@ -1,4 +1,4 @@
-package com.restwithspringbootawsdocker.person;
+package com.restwithspringbootawsdocker.person.entity;
 
 import lombok.Data;
 
