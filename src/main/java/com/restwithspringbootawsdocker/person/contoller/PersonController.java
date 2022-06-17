@@ -38,8 +38,8 @@ public class PersonController {
         return personService.update(person);
     }
 
-    @RequestMapping(value = "/{id}")
-    public void update(@PathVariable Long id){
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public void delete(@PathVariable Long id){
         personService.delete(id);
     }
 }
