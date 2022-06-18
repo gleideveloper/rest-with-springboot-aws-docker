@@ -1,7 +1,7 @@
 package com.restwithspringbootawsdocker.calculator.handler;
 
 import com.restwithspringbootawsdocker.calculator.exception.ExceptionResponse;
-import com.restwithspringbootawsdocker.calculator.exception.UnsupportedMathOperationException;
+import com.restwithspringbootawsdocker.calculator.exception.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -23,7 +23,7 @@ public class CustomizedResponseEntityException extends ResponseEntityExceptionHa
         return new ResponseEntity<>(exceptionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @ExceptionHandler(UnsupportedMathOperationException.class)
+    @ExceptionHandler(ResourceNotFoundException.class)
     public final ResponseEntity<ExceptionResponse> handleBadException(Exception ex, WebRequest webRequest){
         ExceptionResponse exceptionResponse = new ExceptionResponse(
                 new Date(), ex.getMessage(), webRequest.getDescription(false));

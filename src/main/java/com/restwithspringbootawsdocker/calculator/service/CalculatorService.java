@@ -1,6 +1,6 @@
 package com.restwithspringbootawsdocker.calculator.service;
 
-import com.restwithspringbootawsdocker.calculator.exception.UnsupportedMathOperationException;
+import com.restwithspringbootawsdocker.calculator.exception.ResourceNotFoundException;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -39,7 +39,7 @@ public class CalculatorService implements CalcService{
     @Override
     public Boolean isNumeric(String a, String b){
         if(!a.matches("[-+]?[0-9]*\\.?[0-9]+") && !b.matches("[-+]?[0-9]*\\.?[0-9]+")){
-            throw new UnsupportedMathOperationException("Please set a numeric value");
+            throw new ResourceNotFoundException("Please set a numeric value");
         }
         return true;
     }
@@ -47,7 +47,7 @@ public class CalculatorService implements CalcService{
     @Override
     public Boolean isNumeric(String numbOne) {
         if(!numbOne.matches("[-+]?[0-9]*\\.?[0-9]+")){
-            throw new UnsupportedMathOperationException("Please set a numeric value");
+            throw new ResourceNotFoundException("Please set a numeric value");
         }
         return true;
     }
