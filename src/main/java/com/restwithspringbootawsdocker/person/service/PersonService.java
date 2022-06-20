@@ -1,7 +1,7 @@
 package com.restwithspringbootawsdocker.person.service;
 
 import com.restwithspringbootawsdocker.calculator.exception.ResourceNotFoundException;
-import com.restwithspringbootawsdocker.person.entity.Person;
+import com.restwithspringbootawsdocker.person.data.model.Person;
 import com.restwithspringbootawsdocker.person.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
