@@ -1,6 +1,7 @@
 package com.restwithspringbootawsdocker.person.contoller;
 
 import com.restwithspringbootawsdocker.person.data.vo.PersonVO;
+import com.restwithspringbootawsdocker.person.data.vo.PersonVOV2;
 import com.restwithspringbootawsdocker.person.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -28,6 +29,12 @@ public class PersonController {
     public PersonVO create(@RequestBody PersonVO personVO){
         return personService.create(personVO);
     }
+
+    @PostMapping("/v2")
+    public PersonVOV2 createV2(@RequestBody PersonVOV2 personVOV2){
+        return personService.createV2(personVOV2);
+    }
+
 
     @PutMapping()
     public PersonVO update(@RequestBody PersonVO personVO){
