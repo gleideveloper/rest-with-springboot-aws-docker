@@ -1,7 +1,6 @@
 package com.restwithspringbootawsdocker.person.contoller;
 
 import com.restwithspringbootawsdocker.person.data.vo.PersonVO;
-import com.restwithspringbootawsdocker.person.data.vo.PersonVOV2;
 import com.restwithspringbootawsdocker.person.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,22 +14,24 @@ public class PersonController {
     @Autowired
     private PersonService personService;
 
-    @GetMapping(value = "/persons")
+    @GetMapping(produces = {"application/json", "application/xml"})
     public List<PersonVO> findByAll(){
         return personService.findByAll();
     }
 
-    @GetMapping(value = "/{id}")
+    @GetMapping(value = "/{id}", produces = {"application/json", "application/xml"})
     public PersonVO findById(@PathVariable("id") Long id){
         return personService.findById(id);
     }
 
-    @PostMapping()
+    @PostMapping(produces = {"application/json", "application/xml"},
+            consumes = {"application/json", "application/xml"})
     public PersonVO create(@RequestBody PersonVO personVO){
         return personService.create(personVO);
     }
 
-    @PutMapping()
+    @PutMapping(produces = {"application/json", "application/xml"},
+            consumes = {"application/json", "application/xml"})
     public PersonVO update(@RequestBody PersonVO personVO){
         return personService.update(personVO);
     }
