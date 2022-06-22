@@ -14,30 +14,30 @@ public class PersonController {
     @Autowired
     private PersonService personService;
 
-    @GetMapping(produces = {"application/json", "application/xml"})
-    public List<PersonVO> findByAll(){
+    @GetMapping(produces = {"application/json", "application/xml", "application/x-yaml"})
+    public List<PersonVO> findByAll() {
         return personService.findByAll();
     }
 
-    @GetMapping(value = "/{id}", produces = {"application/json", "application/xml"})
-    public PersonVO findById(@PathVariable("id") Long id){
+    @GetMapping(value = "/{id}", produces = {"application/json", "application/xml", "application/x-yaml"})
+    public PersonVO findById(@PathVariable("id") Long id) {
         return personService.findById(id);
     }
 
-    @PostMapping(produces = {"application/json", "application/xml"},
+    @PostMapping(produces = {"application/json", "application/xml", "application/x-yaml"},
             consumes = {"application/json", "application/xml"})
-    public PersonVO create(@RequestBody PersonVO personVO){
+    public PersonVO create(@RequestBody PersonVO personVO) {
         return personService.create(personVO);
     }
 
-    @PutMapping(produces = {"application/json", "application/xml"},
-            consumes = {"application/json", "application/xml"})
-    public PersonVO update(@RequestBody PersonVO personVO){
+    @PutMapping(produces = {"application/json", "application/xml", "application/x-yaml"},
+            consumes = {"application/json", "application/xml", "application/x-yaml"})
+    public PersonVO update(@RequestBody PersonVO personVO) {
         return personService.update(personVO);
     }
 
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<?> delete(@PathVariable Long id){
+    public ResponseEntity<?> delete(@PathVariable Long id) {
         personService.delete(id);
         return ResponseEntity.ok().build();
     }
