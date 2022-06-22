@@ -31,7 +31,7 @@ public class PersonController {
     @GetMapping(value = "/{id}", produces = {"application/json", "application/xml", "application/x-yaml"})
     public PersonVO findById(@PathVariable("id") Long id) {
         PersonVO personVO = personService.findById(id);
-        personVO.add(linkTo(methodOn(PersonController.class).findById(id)).withSelfRel());
+        personVO.add(linkTo(methodOn(PersonController.class).findByAll()).withRel("Lista de Pessoas"));
         return personVO;
     }
 
