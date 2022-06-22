@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/person")
+@RequestMapping("/api/person/v1")
 public class PersonController {
     @Autowired
     private PersonService personService;
@@ -29,12 +29,6 @@ public class PersonController {
     public PersonVO create(@RequestBody PersonVO personVO){
         return personService.create(personVO);
     }
-
-    @PostMapping("/v2")
-    public PersonVOV2 createV2(@RequestBody PersonVOV2 personVOV2){
-        return personService.createV2(personVOV2);
-    }
-
 
     @PutMapping()
     public PersonVO update(@RequestBody PersonVO personVO){

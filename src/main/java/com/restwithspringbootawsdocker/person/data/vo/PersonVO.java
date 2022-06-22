@@ -1,5 +1,8 @@
 package com.restwithspringbootawsdocker.person.data.vo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -14,14 +17,17 @@ import java.util.Objects;
 @Setter
 @ToString
 @RequiredArgsConstructor
-
+@JsonPropertyOrder({"id","address", "first_Name","last_Name","gender"})
 public class PersonVO implements Serializable {
     private static final Long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @JsonProperty("first_Name")
     private String firstName;
+    @JsonProperty("last_Name")
     private String lastName;
+    @JsonIgnore
     private String address;
     private String gender;
 
